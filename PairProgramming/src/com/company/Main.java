@@ -19,6 +19,15 @@ public class Main {
             Scanner sc = new Scanner(unsorted);
             while (sc.hasNextLine()) {
                 word = sc.nextLine();
+                if (alpha.size() == 0) {
+                    alpha.add(word);
+                } for (int ind = 0; ind < alpha.size(); ind++) {
+                    if (word.compareTo(alpha.get(ind)) < 0) {
+                        alpha.add(ind, word);
+                        break;
+                    }
+
+                }
             }
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
