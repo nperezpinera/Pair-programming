@@ -13,6 +13,7 @@ public class Main {
 
         LinkedList<String> alpha = new LinkedList<String>();
 
+        int progress = 0;
         String word;
         File unsorted = new File("unsorteddict.txt");
         try {
@@ -21,12 +22,20 @@ public class Main {
                 word = sc.nextLine();
                 if (alpha.size() == 0) {
                     alpha.add(word);
-                } for (int ind = 0; ind < alpha.size(); ind++) {
+                    progress++;
+                    System.out.println(progress);
+                }
+                for (int ind = 0; ind < alpha.size(); ind++) {
                     if (word.compareTo(alpha.get(ind)) < 0) {
                         alpha.add(ind, word);
+                        progress++;
+                        System.out.println(progress);
                         break;
                     }
 
+                }
+                if (alpha.size() == 1000) {
+                    System.out.println(alpha);
                 }
             }
         } catch (FileNotFoundException ex) {
