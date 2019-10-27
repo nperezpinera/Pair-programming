@@ -1,17 +1,13 @@
 package com.company;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.LinkedList;
 import java.util.Scanner;
 
 public class FasterSort {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
 
-        LinkedList<String> alpha = new LinkedList<String>();
         LinkedList<String> a = new LinkedList<String>();
         LinkedList<String> b = new LinkedList<String>();
         LinkedList<String> c = new LinkedList<String>();
@@ -41,7 +37,7 @@ public class FasterSort {
 
         String letter1 = "\u212B";
         String letter2 = "\u00E9";
-        
+
         String alphabet = "a b c d e f g h i j k l m n o p q r s t u v w x y z";
         String al[] = alphabet.split(" ");
 
@@ -410,41 +406,123 @@ public class FasterSort {
                         }
                     }
             }
-            System.out.println(a);
-            System.out.println(b);
-            System.out.println(c);
-            System.out.println(d);
-            System.out.println(e);
-            System.out.println(f);
-            System.out.println(g);
-            System.out.println(h);
-            System.out.println(i);
-            System.out.println(j);
-            System.out.println(k);
-            System.out.println(l);
-            System.out.println(m);
-            System.out.println(n);
-            System.out.println(o);
-            System.out.println(p);
-            System.out.println(q);
-            System.out.println(r);
-            System.out.println(s);
-            System.out.println(t);
-            System.out.println(u);
-            System.out.println(v);
-            System.out.println(w);
-            System.out.println(x);
-            System.out.println(y);
-            System.out.println(z);
 
-
-            //           if (word.compareTo(alpha.get(ind)) < 0) {
-            //           alpha.add(ind, word);
-            //           break;
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         }
-        System.out.println(a.size()+b.size()+c.size()+d.size()+e.size()+f.size()+g.size()+h.size()+i.size()+j.size()+k.size()+l.size()+m.size()+n.size()
-        +o.size()+p.size()+q.size()+r.size()+s.size()+t.size()+u.size()+v.size()+w.size()+x.size()+y.size()+z.size());
+        PrintWriter writer = new PrintWriter("sorted.txt", "UTF-8");
+        for (int var = 0; var < a.size(); var++) {
+            writer.println(a.get(var));
+        }
+        for (int var = 0; var < b.size(); var++) {
+            writer.println(b.get(var));
+        }
+        for (int var = 0; var < c.size(); var++) {
+            writer.println(c.get(var));
+        }
+        for (int var = 0; var < d.size(); var++) {
+            writer.println(d.get(var));
+        }
+        for (int var = 0; var < e.size(); var++) {
+            writer.println(e.get(var));
+        }
+        for (int var = 0; var < f.size(); var++) {
+            writer.println(f.get(var));
+        }
+        for (int var = 0; var < g.size(); var++) {
+            writer.println(g.get(var));
+        }
+        for (int var = 0; var < h.size(); var++) {
+            writer.println(h.get(var));
+        }
+        for (int var = 0; var < i.size(); var++) {
+            writer.println(i.get(var));
+        }
+        for (int var = 0; var < j.size(); var++) {
+            writer.println(j.get(var));
+        }
+        for (int var = 0; var < k.size(); var++) {
+            writer.println(k.get(var));
+        }
+        for (int var = 0; var < l.size(); var++) {
+            writer.println(l.get(var));
+        }
+        for (int var = 0; var < m.size(); var++) {
+            writer.println(m.get(var));
+        }
+        for (int var = 0; var < n.size(); var++) {
+            writer.println(n.get(var));
+        }
+        for (int var = 0; var < o.size(); var++) {
+            writer.println(o.get(var));
+        }
+        for (int var = 0; var < p.size(); var++) {
+            writer.println(p.get(var));
+        }
+        for (int var = 0; var < q.size(); var++) {
+            writer.println(q.get(var));
+        }
+        for (int var = 0; var < r.size(); var++) {
+            writer.println(r.get(var));
+        }
+        for (int var = 0; var < s.size(); var++) {
+            writer.println(s.get(var));
+        }
+        for (int var = 0; var < t.size(); var++) {
+            writer.println(t.get(var));
+        }
+        for (int var = 0; var < u.size(); var++) {
+            writer.println(u.get(var));
+        }
+        for (int var = 0; var < v.size(); var++) {
+            writer.println(v.get(var));
+        }
+        for (int var = 0; var < w.size(); var++) {
+            writer.println(w.get(var));
+        }
+        for (int var = 0; var < x.size(); var++) {
+            writer.println(x.get(var));
+        }
+        for (int var = 0; var < y.size(); var++) {
+            writer.println(y.get(var));
+        }
+        for (int var = 0; var < z.size(); var++) {
+            writer.println(z.get(var));
+        }
+        writer.close();
+
+        File sorteddict = new File("sorted.txt");
+        Scanner reader = new Scanner(sorteddict);
+        int pos = 0;
+        String words[] = new String[100000];
+        while (reader.hasNextLine()) {
+            words[pos] = reader.nextLine();
+            pos++;
+        }
+
+        Scanner scan = new Scanner(System.in);
+        Scanner number2 = new Scanner(System.in);
+        for (int counter = 0;counter<10;counter++) {
+            System.out.println("Please enter 1 to look for a word or 2 to look for a position");
+            int choose = scan.nextInt();
+            if (choose == 1) {
+                String voc = number2.nextLine();
+                for (int ind = 0; ind < words.length; ind++) {
+                    if (voc == words[ind]) {
+                        System.out.println(voc + " is in position " + ind);
+                    } else {
+                        System.out.println("-1");
+                        break;
+                    }
+                }
+            } else if (choose == 2) {
+                int num = scan.nextInt();
+                if (words[num] != null) {
+                    System.out.println("The word in position " + num + " is " + words[num]);
+                } else if (words[num] == null){
+                    System.out.println("-1");
+                }
+            }
+        }
     }
 }
