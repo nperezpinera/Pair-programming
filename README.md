@@ -40,4 +40,4 @@ if (word.toLowerCase().compareTo("a") >= 0) {
 ```
 At its core the code that iterates through each list is the same as in the first class, but enclosed within a set of if statements. This makes the process much faster. Each list is then added to a new file, and user commands are integrated.
 
-** Commits were made from each group member's computer, while the entirety of the code was written in a cooperative manner. **
+**Commits were made from each group member's computer, while the entirety of the code was written in a cooperative manner.**
