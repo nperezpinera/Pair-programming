@@ -1,9 +1,6 @@
 package com.company;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -41,5 +38,29 @@ public class Main {
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         }
+        PrintWriter writer = new PrintWriter("sorted.txt", "UTF-8");
+        for (int i = 0; i < alpha.size(); i++) {
+            writer.println(alpha.get(i));
+        }
+        Scanner choice = new Scanner(System.in);
+        Scanner number2 = new Scanner(System.in);
+        System.out.println("Please introduce 1 for a number or 2 for a word");
+        int ch = choice.nextInt();
+        String check = number2.nextLine();
+        if (ch==1) {
+            if (alpha.get(ch) != null) {
+                System.out.println(alpha.get(ch));
+            } else {
+                System.out.println("-1");
+            }
+        } else if (ch==2) {
+            if(alpha.contains(check)) {
+                System.out.println(alpha.indexOf(check));
+            } else {
+                System.out.println("-1");
+            }
+        }
+        choice.close();
+        number2.close();
     }
 }
