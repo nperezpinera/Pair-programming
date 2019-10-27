@@ -6,7 +6,7 @@
 ### Main method
 The **Main.java** class uses a simple algorith to iterate through the unsorted document. After reading the file, the first word is put into a linked list. Once this first word is in, the algorithm used takes every word read from unsorteddict.txt and iterates through the list, comparing it to the words already in it by using the compareTo method. This ensures the words are in alphabetical order. Here is the most important part of the algorithm:
 ```java
-ºººfor (int ind = 0; ind < alpha.size(); ind++) {
+for (int ind = 0; ind < alpha.size(); ind++) {
                     if (word.compareTo(alpha.get(ind)) < 0) {
                         alpha.add(ind, word);
                         progress++;
