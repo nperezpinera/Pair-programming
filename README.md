@@ -21,4 +21,23 @@ Printwriter is then used to create a new file, and scanner is used to record use
 The following class seeks to fix that by using 26 lists instead of one.
 
 ### Faster method
-The 
+The faster solution relies on the ifGenerator class. Rather than using only one list to house all the values, it has one list for each letter in the alphabet. After the 26 lists are created, a set of ifs for each list have to be created. However, this would be very time consuming, so a separate class, named ifGenerator.java, was created. The purpose of this class is to generate these 26 if statements by printing them. The result is then copied over the the original class. The code is very lengthy so it will not be posted here, but this repository contains the class so it can be viewed there. Here is an example of one of the 26 if statements:
+```java
+if (word.toLowerCase().compareTo("a") >= 0) {
+                    if (word.toLowerCase().compareTo("b") < 0) {
+                        if (a.size() == 0) {
+                            a.add(word);
+                        }
+                        for (int letter = 0; letter < a.size(); letter++) {
+                            if (word.compareTo(a.get(letter)) < 0) {
+                                a.add(letter, word);
+                                break;
+                            }
+                        }
+                    }
+
+                }
+```
+At its core the code that iterates through each list is the same as in the first class, but enclosed within a set of if statements. This makes the process much faster. Each list is then added to a new file, and user commands are integrated.
+
+** Commits were made from each group member's computer, while the entirety of the code was written in a cooperative manner. **
