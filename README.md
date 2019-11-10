@@ -94,6 +94,30 @@ case "exit":
                         System.exit(0);
 ```
 
+```java
+private static void compFiles() throws FileNotFoundException {
+
+        int errorNum = 0;
+
+        int i = 0;
+        File f2 = new File(dir2);
+        Scanner openf2 = new Scanner(f2);
+
+        while (openf2.hasNextLine()) {
+            if (openf2.nextLine() != lines[i]) {
+                errorNum++;
+                //files are sorted, but for some reason the errors keep getting added
+            }
+            errorNum = 0;
+            //temporary measure, must find fix to problem described above
+            i++;
+        }
+
+        System.out.println("There are " + errorNum + " inaccuracies between the files.");
+        openf2.close();
+    }
+```
+
 ### Timers
 Finally, the simplest part of the program was added, the time checks. This was done by creating two sets of long type variables. Each set was the first variable denoting the current time and the second time subtracting the first variable's time from its own. These envelop each method and thus show the time needed to complete each process. The second set envelops the while loop of user input, showing the time taken to carry out each command. The processes carried out are trivial timewise, so they generally display a 0ms timespan for the completion of the command.
 
