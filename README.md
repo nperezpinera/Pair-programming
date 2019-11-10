@@ -42,5 +42,9 @@ At its core the code that iterates through each list is the same as in the first
 
 **Commits were made from each group member's computer, while the entirety of the code was written in a cooperative manner. All of the code can be seen in the three classes within this repository (inside the PairProgramming folder).**
 
-# ______________________________________________________________________________________________________________________________________
+# Software testing
 
+**The goal of this exercise was to add several features common in software testing processes. These include timers to track progress throughout the creation of the file, user inputs and contingencies for invalid inputs, and a comparison method to test the new sorted file against a control file.**
+
+## Changes in respect of the previous version
+The previous version was unsuitable for software testing procedures in any reasonable sense due to the complex and lengthy nature of the program. Acting on feedback given during the review of the program, the linked list generation was put into its own method, and rather than having an if clause for the creation of each list, a more efficient method using a for loop and a linked list of linked lists was used. As a side note, the function of colons in for loops in java was dicovered during this process, making the writing of this kind of for loops less tedious and slightly more visually appealing. Talking about for loops, the method of iteration to compare words when creating the list was changed. Rather than using the slow, clunky for loops used prior (based on feedback given in class), the iterator class was used. This was orders of magnitude faster, and allowed the program to be completed in seconds, as opposed to the usual 20 or so minutes in the previous 564 lines long "fast" program or hours in the most basic version. These changes did not fulfill any of the objectives for the software testing exercise except perhaps for bottleneck identification/solving, but were made to make the exercise feasible.
