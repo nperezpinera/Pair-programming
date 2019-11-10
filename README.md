@@ -71,7 +71,7 @@ ListIterator iterator1 = dict.get(indicator).listIterator(0);
 ```
 
 ### User input and comparing the files
-More varied user inputs were allowed in this program by using switch rather than if clauses. Some commands give viable outputs, such as -1 and exit, whereas incorrect inputs give an "invalid output" message. If the command "test" is given, the program will not execute the comparison and will instead recommend that the user input the command "-1" instead. If an index beyond the scope of the file is given, another message is written alerting the user to this fact. This part is fairly simple and was most notable in its replacement of if clauses with switch and the corresponding switch cases. The entire system sits within a while loop dictated by the boolean temp. This is simply done to keep the loop running, as instead of exiting the program by setting temp to false, the command "System.exit(0)" is used instead. The following are examples of commands and their designated outputs.
+More varied user inputs were allowed in this program by using switch rather than if clauses. Some commands give viable outputs, such as -1 and exit, whereas incorrect inputs give an "invalid output" message. If the command "test" is given, the program will not execute the comparison and will instead recommend that the user input the command "-1" instead. If an index beyond the scope of the file is given, another message is written alerting the user to this fact. This part is fairly simple and was most notable in its replacement of if clauses with switch and the corresponding switch cases, which among other things makes it much, much easier to allow the program to distinguish between integer and string inputs. The entire system sits within a while loop dictated by the boolean temp. This is simply done to keep the loop running, as instead of exiting the program by setting temp to false, the command "System.exit(0)" is used instead. The following are examples of commands and their designated outputs.
 
 ```java
 default:
@@ -93,3 +93,17 @@ case "exit":
                         System.out.println("Program closed.");
                         System.exit(0);
 ```
+
+### Timers
+Finally, the simplest part of the program was added, the time checks. This was done by creating two sets of long type variables. Each set was the first variable denoting the current time and the second time subtracting the first variable's time from its own. These envelop each method and thus show the time needed to complete each process. The second set envelops the while loop of user input, showing the time taken to carry out each command. The processes carried out are trivial timewise, so they generally display a 0ms timespan for the completion of the command.
+
+```java
+long time3 = System.currentTimeMillis();
+        long time4 = System.currentTimeMillis()-time3;
+```
+```java
+            System.out.println("- Command executed in " + time4 + "ms -");
+```
+
+## The End
+This marks the end of the second part of pair programming. for a complete view of the overhauled program, open SorterRedone in src/com/company.
