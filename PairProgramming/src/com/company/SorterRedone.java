@@ -17,10 +17,21 @@ public class testmctestface {
 
     public static void main(String args[]) {
 
+        long time1 = System.currentTimeMillis();
+        long time2 = System.currentTimeMillis() - time1;
+
         makeList();
+
         try {
+            time1 = System.currentTimeMillis();
             sort();
+            time2 = (System.currentTimeMillis() - time1);
+            System.out.println("List sorted in " + time2 + "ms");
+            time1 = System.currentTimeMillis();
             fileGenerator();
+            time2 = (System.currentTimeMillis() - time1);
+            System.out.println("Sorted list written into file in " + time2 + "ms");
+
             userInput();
         } catch (FileNotFoundException | UnsupportedEncodingException e) {
             e.printStackTrace();
@@ -88,11 +99,14 @@ public class testmctestface {
 
     public static void userInput() throws FileNotFoundException {
 
+        long time3 = System.currentTimeMillis();
+        long time4 = System.currentTimeMillis()-time3;
         boolean temp = true;
         int argNumber = 0;
         Scanner scan = new Scanner(System.in);
 
         while (temp) {
+            time3 = System.currentTimeMillis();
             String uInput = scan.nextLine();
             try {
                 argNumber = Integer.parseInt(uInput);
@@ -108,7 +122,6 @@ public class testmctestface {
                         } else {
                             System.out.println(lines[argNumber]);
                         }
-
                 }
             } catch (Exception e) {
 
@@ -132,6 +145,7 @@ public class testmctestface {
                         System.exit(0);
                 }
             }
+            System.out.println("- Command executed in " + time4 + "ms -");
         }
         scan.close();
     }
