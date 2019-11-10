@@ -18,13 +18,14 @@ public class SorterRedone {
         makeList();
         try {
             sort();
+            fileGenerator();
         }
-        catch (FileNotFoundException e) {
+        catch (FileNotFoundException | UnsupportedEncodingException e) {
             e.printStackTrace();
         }
     }
 
-    public static void makeList() {
+    public static void makeList(){
         for (char letter : alphabet.toCharArray()){
             dict.add(new LinkedList<String>());
         }
@@ -64,6 +65,21 @@ public class SorterRedone {
             result++;
         }
         return -1;
+    }
+
+    static String[] lines = new String[10000];
+
+    public static void fileGenerator() throws FileNotFoundException, UnsupportedEncodingException {
+        PrintWriter writer = new PrintWriter("sorteddict.txt","UTF-8");
+        int i = 0;
+        for(LinkedList<String> element : dict) {
+            for(String word: element) {
+                lines[i] = word;
+                i++;
+                writer.println(word);
+            }
+        }
+        writer.close();
     }
 
 }
