@@ -106,4 +106,4 @@ long time3 = System.currentTimeMillis();
 ```
 
 ## The End
-This marks the end of the second part of pair programming. for a complete view of the overhauled program, open SorterRedone in src/com/company.
+This marks the end of the second part of pair programming. For a complete view of the overhauled program, open SorterRedone in src/com/company.
