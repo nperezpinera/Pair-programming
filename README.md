@@ -131,3 +131,55 @@ long time3 = System.currentTimeMillis();
 
 ## The End
 This marks the end of the second part of pair programming. For a complete view of the overhauled program, open SorterRedone in src/com/company.
+
+# Coding principles
+
+**The goal of this activity was to read through the code and check if it abides by the coding principles established during class, to ensure it is understandable and reliable.**
+
+## Coding principle 1: meaningful names
+This was the main activity carried out during this exercise, as the rest of the coding principles had been fulfilled for the most part (proof will still be shown). Though there were no "silly" or joke names, there were names made up quickly and without much thought, such as time1 and time2 for measuring time. These were changed to timeBefore and timeDifference respectively. Function names were also changed, and they should now effectively convey the purpose of the function, such as sortedListToFile, which reads through the sorted list and writes it into a file, or the rightfully long compareValuesWhileTheyAreAddedToTheSortedList. This last one was necessary as shortening it made the meaning too obscure. The remaining changes would take up a lot of space, and they can be seen in the program in src/com/company/SorterRedone.java.
+
+## Coding principle 2: keep functions small
+The functions in this new program were designed to segment the tasks the the program carries out into readable chunks. The longest one is userInput, but this is unfortunately necessary. This is because it uses a set of switch cases which, although they could potentially be separated into their own function, works better when integrated into userInput. This is because the functionality of this function has the switch cases at its core, and they are therefore helpful in understanding the function when reading through it. The rest compartmentalise each of their respective tasks into workable chunks. Here are some examples:
+```java
+            public static void sortedListToFile() throws FileNotFoundException, UnsupportedEncodingException {
+
+        PrintWriter writer = new PrintWriter("sorteddict.txt", "UTF-8");
+        int i = 0;
+        for (LinkedList<String> element : dictionaryList) {
+            for (String word : element) {
+                lines[i] = word;
+                i++;
+                writer.println(word);
+            }
+        }
+        writer.close();
+    }
+```
+
+```java
+            private static void checkAccuracy() throws FileNotFoundException {
+
+        int correctLinesNum = 0;
+
+        int totalLinesChecked = 0;
+        File controlFile = new File(directory2);
+        Scanner openf2 = new Scanner(controlFile);
+
+        while (openf2.hasNextLine()) {
+            if (openf2.nextLine() != lines[totalLinesChecked]) {
+                correctLinesNum++;
+            }
+            totalLinesChecked++;
+        }
+
+        System.out.println("There are " + (totalLinesChecked-correctLinesNum) + " inaccuracies between the files.");
+        openf2.close();
+    }
+```
+
+## Coding principle 3: avoid redundant commenting
+This principle was almost already resolved. The only comments in the code had to do with an issue regarding the checkAccuracy() function, but these were resolved and the comments were removed. Since the functions and the code should be fairly self explanatory accross the board, there are now no comments present in the code.
+
+## Coding principle 4: SRP (Single Responsibility Principle)
+Again, the code 
