@@ -4,33 +4,33 @@ import java.io.*;
 import java.util.*;
 import java.util.LinkedList;
 
-public class testmctestface {
+public class SorterRedone {
 
     static String alphabet = "abcdefghijklmnopqrstuvwxyzé";
 
-    static String dir = "C:\\Users\\npere\\IdeaProjects\\PairProgramming\\unsortedDictTest.txt";
-    static String dir2 = "C:\\Users\\npere\\IdeaProjects\\PairProgramming\\sortedDictTest.txt";
+    static String directory1 = "C:\\Users\\npere\\IdeaProjects\\PairProgramming\\unsortedDictTest.txt";
+    static String directory2 = "C:\\Users\\npere\\IdeaProjects\\PairProgramming\\sortedDictTest.txt";
 
 
-    static LinkedList<LinkedList> dict = new LinkedList<>();
+    static LinkedList<LinkedList> dictionaryList = new LinkedList<>();
 
 
     public static void main(String args[]) {
 
-        long time1 = System.currentTimeMillis();
-        long time2 = System.currentTimeMillis() - time1;
+        long timeBefore;
+        long timeDifference;
 
         makeList();
 
         try {
-            time1 = System.currentTimeMillis();
-            sort();
-            time2 = (System.currentTimeMillis() - time1);
-            System.out.println("List sorted in " + time2 + "ms");
-            time1 = System.currentTimeMillis();
-            fileGenerator();
-            time2 = (System.currentTimeMillis() - time1);
-            System.out.println("Sorted list written into file in " + time2 + "ms");
+            timeBefore = System.currentTimeMillis();
+            sortList();
+            timeDifference = (System.currentTimeMillis() - timeBefore);
+            System.out.println("List sorted in " + timeDifference + "ms");
+            timeBefore = System.currentTimeMillis();
+            sortedListToFile();
+            timeDifference = (System.currentTimeMillis() - timeBefore);
+            System.out.println("Sorted list written into file in " + timeDifference + "ms");
 
             userInput();
         } catch (FileNotFoundException | UnsupportedEncodingException e) {
@@ -41,39 +41,39 @@ public class testmctestface {
     public static void makeList() {
 
         for (char letter : alphabet.toCharArray()) {
-            dict.add(new LinkedList<String>());
+            dictionaryList.add(new LinkedList<String>());
         }
     }
 
-    public static void sort() throws FileNotFoundException {
+    public static void sortList() throws FileNotFoundException {
 
-        File file = new File(dir);
-        Scanner sc = new Scanner(file);
+        File fileToSort = new File(directory1);
+        Scanner sc = new Scanner(fileToSort);
         while (sc.hasNextLine()) {
 
             String word = sc.nextLine().toLowerCase();
             int indicator = alphabet.indexOf(word.charAt(0));
 
-            int position = compare(word, indicator);
+            int position = compareValuesWhileTheyAreAddedToTheSortedList(word, indicator);
 
             if (position != -1) {
-                dict.get(indicator).add(position, word);
+                dictionaryList.get(indicator).add(position, word);
             } else {
-                dict.get(indicator).add(word);
+                dictionaryList.get(indicator).add(word);
             }
         }
         sc.close();
     }
 
-    public static int compare(String word, int indicator) {
+    public static int compareValuesWhileTheyAreAddedToTheSortedList(String word, int key) {
 
-        ListIterator iterator1 = dict.get(indicator).listIterator(0);
+        ListIterator sortingIterator = dictionaryList.get(key).listIterator(0);
         int result = 0;
 
-        while (iterator1.hasNext()) {
+        while (sortingIterator.hasNext()) {
 
-            String temp = iterator1.next().toString();
-            if (word.compareTo(temp) < 0) {
+            String temporaryString = sortingIterator.next().toString();
+            if (word.compareTo(temporaryString) < 0) {
                 return result;
             }
             result++;
@@ -83,11 +83,11 @@ public class testmctestface {
 
     static String[] lines = new String[10000];
 
-    public static void fileGenerator() throws FileNotFoundException, UnsupportedEncodingException {
+    public static void sortedListToFile() throws FileNotFoundException, UnsupportedEncodingException {
 
         PrintWriter writer = new PrintWriter("sorteddict.txt", "UTF-8");
         int i = 0;
-        for (LinkedList<String> element : dict) {
+        for (LinkedList<String> element : dictionaryList) {
             for (String word : element) {
                 lines[i] = word;
                 i++;
@@ -99,38 +99,38 @@ public class testmctestface {
 
     public static void userInput() throws FileNotFoundException {
 
-        long time3 = System.currentTimeMillis();
-        long time4 = System.currentTimeMillis()-time3;
-        boolean temp = true;
-        int argNumber = 0;
+        long timeBeforeInput = System.currentTimeMillis();
+        long timeDifferenceInput = System.currentTimeMillis()-timeBeforeInput;
+        boolean loopKeeper = true;
+        int userInputsNumber = 0;
         Scanner scan = new Scanner(System.in);
 
-        while (temp) {
-            time3 = System.currentTimeMillis();
-            String uInput = scan.nextLine();
+        while (loopKeeper) {
+            timeBeforeInput = System.currentTimeMillis();
+            String userInputsText = scan.nextLine();
             try {
-                argNumber = Integer.parseInt(uInput);
-                switch (argNumber) {
+                userInputsNumber = Integer.parseInt(userInputsText);
+                switch (userInputsNumber) {
                     case -1:
-                        compFiles();
+                        checkAccuracy();
                         break;
 
                     default:
-                        if (argNumber < -1 || argNumber > lines.length) {
+                        if (userInputsNumber < -1 || userInputsNumber > lines.length) {
                             System.out.println("The index you are calling for is outside of the file's scope.");
                             break;
                         } else {
-                            System.out.println(lines[argNumber]);
+                            System.out.println(lines[userInputsNumber]);
                         }
                 }
             } catch (Exception e) {
 
-                switch (uInput) {
+                switch (userInputsText) {
                     default:
-                        char add = uInput.toLowerCase().charAt(0);
-                        LinkedList list = dict.get(alphabet.indexOf(add));
-                        if (list.contains(uInput)) {
-                            System.out.println(uInput + " is in position " + compWord(uInput));
+                        char add = userInputsText.toLowerCase().charAt(0);
+                        LinkedList list = dictionaryList.get(alphabet.indexOf(add));
+                        if (list.contains(userInputsText)) {
+                            System.out.println(userInputsText + " is in position " + userInputCompareWord(userInputsText));
                         } else {
                             System.out.println("Invalid input/word not found");
                         }
@@ -145,39 +145,35 @@ public class testmctestface {
                         System.exit(0);
                 }
             }
-            System.out.println("- Command executed in " + time4 + "ms -");
+            System.out.println("- Command executed in " + timeDifferenceInput + "ms -");
         }
         scan.close();
     }
 
-    private static void compFiles() throws FileNotFoundException {
+    private static void checkAccuracy() throws FileNotFoundException {
 
-        int errorNum = 0;
+        int correctLinesNum = 0;
 
-        int i = 0;
-        File f2 = new File(dir2);
-        Scanner openf2 = new Scanner(f2);
+        int totalLinesChecked = 0;
+        File controlFile = new File(directory2);
+        Scanner openf2 = new Scanner(controlFile);
 
         while (openf2.hasNextLine()) {
-            if (openf2.nextLine() != lines[i]) {
-                errorNum++;
-                //files are sorted, but for some reason the errors keep getting added
+            if (openf2.nextLine() != lines[totalLinesChecked]) {
+                correctLinesNum++;
             }
-            errorNum = 0;
-            //temporary measure, must find fix to problem described above
-            i++;
+            totalLinesChecked++;
         }
 
-        System.out.println("There are " + errorNum + " inaccuracies between the files.");
+        System.out.println("There are " + (totalLinesChecked-correctLinesNum) + " inaccuracies between the files.");
         openf2.close();
     }
 
-    private static int compWord(String arg) {
+    private static int userInputCompareWord(String userInputWord) {
 
         for (int i = 0; i < lines.length; i++) {
-            if (arg.toLowerCase().equals(lines[i].toLowerCase())) {
+            if (userInputWord.toLowerCase().equals(lines[i].toLowerCase())) {
                 return i;
-                //same comparison method used in previous version of the program
             }
         }
         return -1;
